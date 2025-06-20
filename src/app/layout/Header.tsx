@@ -4,7 +4,6 @@ import {
   List,
   ListItem,
   IconButton,
-  Box,
   MenuItem,
   Container,
   Select,
@@ -289,12 +288,12 @@ export default function Header() {
 
         {/* Middle Header */}
         <div className="middle_header">
-          <Box component={NavLink} to="/">
+          <NavLink to="/" className="logo-link">
             <img src={logo} className="App-logo" alt="Company logo" />
-          </Box>
-          <Box>
+          </NavLink>
+          <div>
             <SearchComponent />
-          </Box>
+          </div>
         </div>
 
         {/* Navigation */}
@@ -360,4 +359,4 @@ export default function Header() {
       </Container>
     </AppBar>
   );
-}
+} 

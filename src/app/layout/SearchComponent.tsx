@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import NopApi from "../api/ThemeContext/NopApi";
 
@@ -126,7 +126,7 @@ const SearchComponent = () => {
         if (products.length === 0 && productName.length >= 3) return `No products found for "${productName}"`;
         return "No options available";
     };
-
+    console.log('SearchComponent rendered with productName:');
     return (
         <div>
             <div className="search-container position-relative" ref={dropdownRef}>
@@ -209,4 +209,5 @@ const SearchComponent = () => {
     );
 };
 
-export default SearchComponent;
+const MemoizedSearchComponent = memo(SearchComponent);
+export default MemoizedSearchComponent;
