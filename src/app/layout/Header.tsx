@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, memo } from "react";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import SettingsIcon from '@mui/icons-material/Settings';
 
@@ -146,7 +146,8 @@ const useCategories = () => {
 };
 
 // Main component
-export default function Header() {
+const Header = () => {
+  // export default function Header() {
   const { isLoggedIn, logout } = useAuth();
   const { setActiveCategory, setActiveSubCategory } = useCategory();
   const navigate = useNavigate();
@@ -212,7 +213,8 @@ export default function Header() {
       </AppBar>
     );
   }
-  console.log("Header rendered")
+
+  //console.log("Header rendered")
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
       <Container maxWidth="lg">
@@ -359,4 +361,7 @@ export default function Header() {
       </Container>
     </AppBar>
   );
-} 
+}
+
+const MemoizedHeaderComponent = memo(Header);
+export default MemoizedHeaderComponent;

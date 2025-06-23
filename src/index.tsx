@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./app/layout/styles.css";
@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 //store.dispatch(fetchProductsAsync());
 //ReactDOM.createRoot(document.getElementById("root")!).render(
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>
 );

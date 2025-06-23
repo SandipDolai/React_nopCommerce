@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, useMemo, ReactNode } from 'react';
 
 interface AuthContextType {
     isLoggedIn: boolean;
@@ -14,45 +14,47 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
-        const username = getCookie();
-        return !!username.customerId;
-        //const savedState = localStorage.getItem('isLoggedIn');
-        // return savedState ? JSON.parse(savedState) : false;
-    });
-    const [customerId, setCustomerId] = useState<string | null>(() => {
-        const username = getCookie();
-        return username.customerId || localStorage.getItem('guestCustomerId') || null;
-    });
-    function getCookie() {
-        //debugger;
+    const getCookie = () => {
         const cookies = document.cookie.split(';').reduce((acc, cookie) => {
             const [key, value] = cookie.trim().split('=');
             acc[key] = value;
             return acc;
         }, {} as Record<string, string>);
+
         return {
-            username: cookies['username'],
-            customerId: cookies['CustomerId'],
-            name: cookies['Name']
+            username: cookies['username'] || '',
+            customerId: cookies['CustomerId'] || '',
+            name: cookies['Name'] || ''
         };
-    }
-    useEffect(() => {
-        localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
-    }, [isLoggedIn]);
+    };
+
+    const cookieData = useMemo(() => getCookie(), []);
+
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => !!cookieData.customerId);
+    const [customerId, setCustomerId] = useState<string | null>(() =>
+        cookieData.customerId || localStorage.getItem('guestCustomerId') || null
+    );
 
     const login = (customerId: string) => {
         setIsLoggedIn(true);
         setCustomerId(customerId);
         localStorage.removeItem('guestCustomerId');
     };
+
     const logout = () => {
         setIsLoggedIn(false);
         setCustomerId(null);
     };
 
+    const contextValue = useMemo(() => ({
+        isLoggedIn,
+        login,
+        logout,
+        customerId
+    }), [isLoggedIn, customerId]);
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, customerId }}>
+        <AuthContext.Provider value={contextValue}>
             {children}
         </AuthContext.Provider>
     );
