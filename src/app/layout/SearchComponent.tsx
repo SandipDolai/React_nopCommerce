@@ -126,7 +126,7 @@ const SearchComponent = () => {
         if (products.length === 0 && productName.length >= 3) return `No products found for "${productName}"`;
         return "No options available";
     };
-    //console.log('SearchComponent rendered with productName:');
+    console.log('SearchComponent rendered with productName:');
     return (
         <div>
             <div className="search-container position-relative" ref={dropdownRef}>

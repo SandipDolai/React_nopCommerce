@@ -162,7 +162,7 @@ export default function Noplogin() {
                                     <input
                                         type="text"
                                         className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-                                        id="username"
+                                        id="username" autoComplete="username"
                                         {...register('username', { required: 'Username is required' })}
                                     />
                                     <div className="invalid-feedback">
@@ -176,7 +176,7 @@ export default function Noplogin() {
                                     <input
                                         type="password"
                                         className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                                        id="password"
+                                        id="password" autoComplete="current-password"
                                         {...register('password', { required: 'Password is required' })}
                                     />
                                     <div className="invalid-feedback">

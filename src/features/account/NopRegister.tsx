@@ -217,7 +217,7 @@ export default function NopRegister() {
                                     <input
                                         type="text"
                                         className={`form-control ${errors.UserName ? 'is-invalid' : ''}`}
-                                        id="UserName"
+                                        id="UserName" autoComplete="username"
                                         {...register('UserName', { required: 'Username is required' })}
                                     />
                                     <sup>*</sup>
@@ -253,7 +253,7 @@ export default function NopRegister() {
                                     <input
                                         type="password"
                                         className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                                        id="password"
+                                        id="password" autoComplete="current-password"
                                         {...register('password', {
                                             required: 'Password is required',
                                             pattern: {
