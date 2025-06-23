@@ -3,9 +3,12 @@ import HomePageProducts from "./HomePageProducts";
 // import { Container } from '@mui/material';
 import NewArrivalProductList from "./NewArrivalProductList";
 import BestSellers from "./BestSellers";
+import React from "react";
 //import Vote from "./Vote";
 
-export default function HomePage() {
+//export default function HomePage() {
+const HomePage: React.FC = React.memo(() => {
+  console.log("HomePage rendered");
   return (
     // <Container maxWidth="lg">
     <>
@@ -19,4 +22,6 @@ export default function HomePage() {
     </>
     // </Container>
   );
-}
+});
+
+export default HomePage;

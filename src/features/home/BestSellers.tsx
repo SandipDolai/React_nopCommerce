@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import NopApi from "../../app/api/ThemeContext/NopApi";
 //import { useAuth } from "../../app/context/AuthContext";
 import { Typography, Grid, Box } from '@mui/material';
@@ -24,7 +24,8 @@ interface Product {
         RatingSum: number;
     };
 }
-export default function BestSellers() {
+const BestSellers = () => {
+    //export default function BestSellers() {
     //const { customerId } = useAuth();
     const [products, setProducts] = useState<Product[]>([]);
     //const [loading, setLoading] = useState(true);
@@ -82,3 +83,6 @@ export default function BestSellers() {
         </Box>
     );
 }
+
+const MemoizedBestSellers = memo(BestSellers);
+export default MemoizedBestSellers;

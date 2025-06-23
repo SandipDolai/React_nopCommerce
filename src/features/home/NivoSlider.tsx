@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Skeleton } from '@mui/material';
 import NopApi from "../../app/api/ThemeContext/NopApi";
@@ -8,7 +8,8 @@ interface GalleryItem {
   Link: string;
 }
 
-export default function NivoSlider() {
+//export default function NivoSlider() {
+const NivoSlider = () => {
   const [galleryData, setGalleryData] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,3 +51,6 @@ export default function NivoSlider() {
     </div>
   );
 }
+
+const MemoizedNivoSlider = memo(NivoSlider);
+export default MemoizedNivoSlider;

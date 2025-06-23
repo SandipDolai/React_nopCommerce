@@ -214,7 +214,7 @@ const Header = () => {
     );
   }
 
-  //console.log("Header rendered")
+  console.log("Header rendered")
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
       <Container maxWidth="lg">
